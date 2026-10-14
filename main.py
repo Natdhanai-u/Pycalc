@@ -1,24 +1,55 @@
-print("     Welcome to the calculator")
-print("     >>>>>>>>>>>>>>>>>>>>>>>>>")
+from function import add, subtract, multiply, divide 
 
-print("     Choose: add, subtract, multiply, divide")
-choose = input("     => ").lower()
+def main():
+    print("     Welcome to the calculator")
+    print("     >>>>>>>>>>>>>>>>>>>>>>>>>")
 
-print("\n")
-print("     Enter the first number: ")
-num_1 = int(input("     => "))
+    operation = {
+            "add": add, 
+            "subtract": subtract,
+            "multiply": multiply,
+            "divide": divide
+            }
 
-print("     Enter the second number: ")
-num_2 = int(input("     => "))
+    while True:
+        print("     Choose: add, subtract, multiply, divide")
+        choose = input("     => ").lower().strip()
 
-if choose == "add":
-    print(f"     >> {num_1} + {num_2} = {num_1 + num_2}")
-elif choose == "subtract":
-    print(f"     >> {num_1} - {num_2} = {num_1 - num_2}")
-elif choose == "multiply":
-    printf("     >> {num_1} x {num_2} = {num_1 * num_2}")
-elif choose == "divide":
-    if (num_2 == 0):
-        print("Error: cannot divide by zero")
-    else:
-        print(f"     >> {num_1} ÷ {num_2} = {num_1 // num_2}")
+        if choose not in operation:
+            print("     Error: Invalid operation. Please try again.")
+            print("\n")
+            continue 
+
+        while True:
+            try:
+                print("\n")
+                print("     Enter the first number: ")
+                num_1 = int(input("     => "))
+                break
+            except ValueError:
+                print("     Error: Please enter a whole number.")
+                print("\n")
+
+        while True:
+            try:
+                print("     Enter the second number: ")
+                num_2 = int(input("     => "))
+                break
+            except ValueError:
+                print("     Error: Please enter a whole number.")
+                print("\n")
+
+        try:
+            result = operation[choose](num_1, num_2)
+        except ValueError as error:
+            print(f"     Error: {error}")
+            continue
+
+        print(f"     >> Result: {result}")
+        print(f"     Calculation complete! Thank you for using my calculator.")
+        break
+
+
+if __name__ == "__main__":
+    main()
+
