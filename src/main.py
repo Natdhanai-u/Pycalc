@@ -24,25 +24,26 @@ def main():
             try:
                 print("\n")
                 print("     Enter the first number: ")
-                num_1 = int(input("     => "))
+                num_1 = float(input("     => "))
                 break
             except ValueError:
-                print("     Error: Please enter a whole number.")
+                print("     Error: Please enter a valid number.")
                 print("\n")
 
         while True:
             try:
                 print("     Enter the second number: ")
-                num_2 = int(input("     => "))
+                num_2 = float(input("     => "))
                 break
             except ValueError:
-                print("     Error: Please enter a whole number.")
+                print("     Error: Please enter a valid number.")
                 print("\n")
 
         try:
             result = operation[choose](num_1, num_2)
         except ValueError as error:
             print(f"     Error: {error}")
+            print("\n")
             continue
 
         print(f"     >> Result: {result}")
